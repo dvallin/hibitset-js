@@ -1,0 +1,39 @@
+{
+  "name": "hibitset-js",
+  "version": "1.0.0",
+  "description": "Hierarchical Bitset for efficient iteration and boolean operations on sparse data.",
+  "main": "lib/index.js",
+  "author": "Maximilian Schuler",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "clean": "shx rm -rf _bundles lib lib-esm",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack"
+  },
+  "dependencies": {
+    "count-trailing-zeros": "^1.0.1",
+    "jest-cli": "^21.1.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.3",
+    "jest": "^21.1.0",
+    "lodash": "^4.17.4",
+    "shx": "^0.2.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/jest-preprocessor.js"
+    },
+    "testMatch": [
+      "**/*.spec.(ts|tsx|js)"
+    ]
+  }
+}
