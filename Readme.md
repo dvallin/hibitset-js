@@ -28,7 +28,7 @@ function iterate(a: B.HierarchicalBitset, callback: (value: object) => void) {
   };
 }
 ```
-the first part is an excerpt from the tests. Then a boolean operation and the zero factory method are demonstrated. The iterate function showcases how to iterate over a BitSet. The HierarchicalBitset type is an interface shared by all BitSets.
+the first part is an excerpt from the tests. Then a boolean operation and the zero factory method are demonstrated. The iterate function showcases how to iterate over a BitSet. The iterate and createIterator functions are part of the library. The HierarchicalBitset type is an interface shared by all BitSets.
 
 ## Motivation
 
@@ -48,7 +48,7 @@ npm install && npm test
 ## Tests
 
 ```
-npm install && npm test
+jest --watch
 ```
 
 ## License
