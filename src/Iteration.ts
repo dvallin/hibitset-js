@@ -1,4 +1,4 @@
-import * as trailingZeros from 'count-trailing-zeros';
+import trailingZeros from 'count-trailing-zeros';
 import { HierarchicalBitset } from "./BitSet";
 import { BITS } from "./Utils"
 

@@ -45,7 +45,6 @@ export class BitSet implements HierarchicalBitset {
       case 2: return this.layer2[index];
       case 3: return this.layer3[index];
     }
-    return undefined;
   }
 
   size(): number {

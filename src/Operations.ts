@@ -24,6 +24,12 @@ export function zero(size: number): HierarchicalBitset {
   }
 }
 
+function maximumSize(sets: Array<HierarchicalBitset>): number {
+  return sets.reduce((acc, set) => {
+    return acc >= set.size() ? acc : set.size();
+  }, 0); 
+}
+
 export function and(...sets: Array<HierarchicalBitset>): HierarchicalBitset {
   if (sets.length == 1) {
     return sets[0];
@@ -36,9 +42,7 @@ export function and(...sets: Array<HierarchicalBitset>): HierarchicalBitset {
       },
 
       size(): number {
-        return sets.reduce((acc, set) => {
-          return acc > set.size() ? acc : set.size();
-        }, 0);
+        return maximumSize(sets)
       }
   }
 }
@@ -55,9 +59,7 @@ export function xor(...sets: Array<HierarchicalBitset>): HierarchicalBitset {
       },
 
       size(): number {
-        return sets.reduce((acc, set) => {
-          return acc > set.size() ? acc : set.size();
-        }, 0);
+        return maximumSize(sets)
       }
   }
 }
@@ -74,9 +76,7 @@ export function or(...sets: Array<HierarchicalBitset>): HierarchicalBitset {
       },
 
       size(): number {
-        return sets.reduce((acc, set) => {
-          return acc > set.size() ? acc : set.size();
-        }, 0);
+        return maximumSize(sets)
       }
   }
 }
