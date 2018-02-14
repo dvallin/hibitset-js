@@ -1,4 +1,4 @@
-import trailingZeros from 'count-trailing-zeros';
+import ctz from 'count-trailing-zeros/ctz';
 import { HierarchicalBitset } from "./BitSet";
 import { BITS } from "./Utils"
 
@@ -34,7 +34,7 @@ export class BitSetIterator {
     let value: number | undefined = undefined;
     while (true) {
       if (this.masks[0] != 0) {
-        const bit = trailingZeros(this.masks[0]);
+        const bit = ctz(this.masks[0]);
         this.masks[0] &= ~(1 << bit);
         value = this.prefix[0] | bit;
         if (value >= this.set.size()) {
@@ -44,7 +44,7 @@ export class BitSetIterator {
         break;
       }
       if (this.masks[1] != 0) {
-        const bit = trailingZeros(this.masks[1]);
+        const bit = ctz(this.masks[1]);
         this.masks[1] &= ~(1 << bit);
         const index = this.prefix[1] | bit;
         this.masks[0] = this.set.byte(index, 0);
@@ -52,7 +52,7 @@ export class BitSetIterator {
         continue;
       }
       if (this.masks[2] != 0) {
-        const bit = trailingZeros(this.masks[2]);
+        const bit = ctz(this.masks[2]);
         this.masks[2] &= ~(1 << bit);
         const index = this.prefix[2] | bit;
         this.masks[1] = this.set.byte(index, 1);
@@ -60,7 +60,7 @@ export class BitSetIterator {
         continue;
       }
       if (this.masks[3] != 0) {
-        const bit = trailingZeros(this.masks[3]);
+        const bit = ctz(this.masks[3]);
         this.masks[3] &= ~(1 << bit);
         const index = this.prefix[3] | bit;
         this.masks[2] = this.set.byte(index, 2);
