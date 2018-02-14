@@ -1,6 +1,6 @@
 {
   "name": "hibitset-js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Hierarchical Bitset for efficient iteration and boolean operations on sparse data.",
   "main": "lib/index.js",
   "author": "Maximilian Schuler",

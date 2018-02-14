@@ -2,11 +2,11 @@ import trailingZeros from 'count-trailing-zeros';
 import { HierarchicalBitset } from "./BitSet";
 import { BITS } from "./Utils"
 
-export function iterate(a: HierarchicalBitset, callback: (value: object) => void) {
+export function iterate(a: HierarchicalBitset, callback: (value: number) => void) {
   const iterator = createIterator(a);
-  while(true) {
+  while (true) {
     const { value, done } = iterator.next();
-    if(done) {
+    if (done || value === undefined) {
       break;
     }
     callback(value);
@@ -23,21 +23,21 @@ export class BitSetIterator {
   prefix: [number, number, number];
   done: boolean;
 
-  constructor(set: HierarchicalBitset, masks: [number, number,  number, number], prefix: [number, number, number]) {
+  constructor(set: HierarchicalBitset, masks: [number, number, number, number], prefix: [number, number, number]) {
     this.set = set;
     this.masks = masks;
     this.prefix = prefix;
     this.done = false;
   }
 
-  next() {
-    let value = undefined;
-    while(true) {
+  next(): { value: number | undefined, done: boolean } {
+    let value: number | undefined = undefined;
+    while (true) {
       if (this.masks[0] != 0) {
         const bit = trailingZeros(this.masks[0]);
         this.masks[0] &= ~(1 << bit);
         value = this.prefix[0] | bit;
-        if(value >= this.set.size()) {
+        if (value >= this.set.size()) {
           this.done = true;
           value = undefined;
         }
